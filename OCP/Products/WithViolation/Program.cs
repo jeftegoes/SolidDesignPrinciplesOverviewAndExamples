@@ -7,7 +7,7 @@ var house = new Product("House", Color.Blue, Size.Large);
 Product[] products = { apple, tree, house };
 
 var productFilter = new ProductFilter();
-Console.WriteLine("Green products (old): {0}");
+Console.WriteLine("Green products (old):");
 foreach (var product in productFilter.FilterByColor(products, Color.Green))
 {
     Console.WriteLine($" - {product.Name} is green.");

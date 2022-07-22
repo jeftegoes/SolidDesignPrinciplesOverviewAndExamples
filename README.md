@@ -15,7 +15,18 @@
     - [2.3.2. Common SRP Violation](#232-common-srp-violation)
     - [2.3.3. Design pattern Façade](#233-design-pattern-façade)
     - [2.3.4. Others related patterns](#234-others-related-patterns)
+    - [2.3.5. Resume](#235-resume)
   - [2.4. O - Open/closed principle](#24-o---openclosed-principle)
+    - [2.4.1. Why OCP?](#241-why-ocp)
+    - [2.4.2. Single choice principle:](#242-single-choice-principle)
+    - [2.4.3. Development methodologies​](#243-development-methodologies)
+    - [2.4.4. Others related patterns](#244-others-related-patterns)
+    - [2.4.5. Interfaces](#245-interfaces)
+    - [2.4.6. Abstract Classes](#246-abstract-classes)
+    - [2.4.7. Interfaces VS Abstract Classes​](#247-interfaces-vs-abstract-classes)
+    - [2.4.8. Common Smells​](#248-common-smells)
+    - [2.4.9. Adhering to OCP​](#249-adhering-to-ocp)
+    - [2.4.10. Resume](#2410-resume)
   - [2.5. L - Liskov substitution principle](#25-l---liskov-substitution-principle)
   - [2.6. I - Interface segregation principle](#26-i---interface-segregation-principle)
   - [2.7. D - Dependency inversion principle](#27-d---dependency-inversion-principle)
@@ -97,11 +108,6 @@
 - Axes of changing requirements​.
 - API users are the source of changes.
 - More responsibilities a class has, ​the more likely it's going to be changed.
-- Applying SRP we want to separate different concerns. ​A class should do one thing, ​and do it well!
-- SRP can be applied at different levels:​
-  - function​
-  - object​
-  - module
 - Classes with too many responsibilities ​are hard to understand!
 - When SRP is violated, responsibilities ​start to collate with each other. ​They become coupled.
 - Gather all the same responsibilities together and separate from each other those which are different.
@@ -131,11 +137,118 @@
 - Composite
   - Composite pattern allows to compose objects into tree structures to represent part-whole hierarchies, letting clients treat individual objects and compositions of objects uniformly.
 
+### 2.3.5. Resume
+
+- Applying SRP we want to separate different concerns.
+- A class should do one thing, and do it well!​
+- Apply SRP at different levels:
+  - function
+  - object
+  - module​
+- Classes with many responsibilities are hard to understand.​
+- When SRP is violated, responsibilities start to collate with each other​.
+- Don't abuse the SRP​.
+- Apply Façade pattern to simplify the API​.
+- Modules that change frequently should be isolated ​from the other parts of the system.
+
 ## 2.4. O - Open/closed principle
 
-- Again, a **class** or **function** should preserve existing properties and not allow changes.
-- So that means it should not change its behavior and it should be able to gain new features.
-- So that means open for the extensibility close for the modifications.
+- Software entities should be open for extension, but closed for modification.
+- We should be able to introduce a change by adding new code, not by changing the existing.
+- **Polymorphism is the Answer.​**
+
+### 2.4.1. Why OCP?
+
+- There is a high chance of introducing bugs ​during the modification process​.
+- It's hard to modify the behavior of an API ​which is already in use by many clients.
+- When customers ask for a new feature they think that features will be added, they don't think that developers will modify anything.
+- We must modify the existing code if it contains a bug.​
+- The Protected Variation pattern means the following: ​Identify points of predicted variation and create a stable interface around them.
+
+### 2.4.2. Single choice principle:
+
+```
+    public class BankTerminalFactory​
+    {​
+        public static IBankTerminal CreateBankTerminal(BankTerminalModel model)​
+        {​
+            switch (model)​
+            {​
+                case BankTerminalModel.Brp:​
+                    return new BrpTerminal();​
+                case BankTerminalModel.Dcp:​
+                    return new DcpTerminal();​
+                default:​
+                    throw new ArgumentException("Unknown model");​
+            }​
+        }​
+    }
+```
+
+- We can't achieve a super-supple design which allows to introduce any possible features.
+
+### 2.4.3. Development methodologies​
+
+- Waterfall​
+  - Try to foresee all the possible details​.
+- Agile
+  - Iterative development process with high involvement of a customer​.
+
+### 2.4.4. Others related patterns
+
+- Template Method
+  - It defines the skeleton of an algorithm in an operation, deferring some steps to subclasses.
+  - Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
+- Strategy
+  - Strategy enables an algorithm's behavior to be selected at runtime. ​The strategy pattern:
+    - Defines a family of algorithms​.
+    - Encapsulates each algorithm​.
+    - Makes the algorithms interchangeable within that family​.
+- Specification
+
+### 2.4.5. Interfaces
+
+- Interfaces can't be easily changed without breaking existing clients​.
+- Interfaces are easily extendable by clients.
+- In other words...
+  - An interface is suppler from the client's perspective: any class can implement as many interfaces as it wants to​.
+  - An interface is more rigid from the developer's perspective: it can't be easily changed and it does not support any kind of reusability.
+
+### 2.4.6. Abstract Classes
+
+- Supports reusability​.
+- Supports encapsulation.​
+- Can be extended easily without breaking existing clients.
+- In other words...
+  - An abstract class is supple from the developer's perspective​.
+  - An abstract class is rigid from the client's perspective.
+
+### 2.4.7. Interfaces VS Abstract Classes​
+
+- Use abstract classes for building internal APIs​
+- Use interfaces for providing external points of extension.
+- In other words...
+  - An abstract class is supple from the developer's perspective​.
+  - An abstract class is rigid from the client's perspective.
+
+### 2.4.8. Common Smells​
+
+- Many conditional branches with if\else or switch\case statements.​
+
+### 2.4.9. Adhering to OCP​
+
+- Parameterization with delegates. "Chain of Responsibility" design pattern.​
+- Classic Inheritance or "Visitor" design pattern​.
+- Composition VS Inheritance. "Strategy" design pattern.
+
+### 2.4.10. Resume
+
+- Design should be open for extensions and closed for modification​.
+- Isolate a responsibility for creating objects in a single module​ (Single Choice Principle)​.
+- Related patterns: "Template Method" and "Strategy"​.
+- Interface is suppler from the client's perspective​.
+- Abstract class is suppler from the developer's perspective​.
+- To overcome the problem of predicting the future, we rely on "agile design".
 
 ## 2.5. L - Liskov substitution principle
 
