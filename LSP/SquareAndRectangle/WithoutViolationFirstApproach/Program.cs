@@ -1,4 +1,4 @@
-﻿using WithoutViolation;
+﻿using WithoutViolationFirstApproach;
 
 Func<Rectangle, int> area = (r) => r.Height * r.Width;
 

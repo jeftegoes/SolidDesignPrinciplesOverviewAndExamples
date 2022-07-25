@@ -1,4 +1,4 @@
-namespace WithoutViolation
+namespace WithoutViolationFirstApproach
 {
     public class Square : Rectangle
     {

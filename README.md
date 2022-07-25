@@ -28,6 +28,14 @@
     - [2.4.9. Adhering to OCP​](#249-adhering-to-ocp)
     - [2.4.10. Resume](#2410-resume)
   - [2.5. L - Liskov substitution principle](#25-l---liskov-substitution-principle)
+    - [2.5.1. Ways of breaking substitutability​](#251-ways-of-breaking-substitutability)
+    - [2.5.2. Contracts](#252-contracts)
+      - [2.5.2.1. What is contract?](#2521-what-is-contract)
+      - [2.5.2.2. What constitutes a method's contract?​](#2522-what-constitutes-a-methods-contract)
+    - [2.5.3. Code contracts in C#​](#253-code-contracts-in-c)
+    - [2.5.4. The problem of representatives​](#254-the-problem-of-representatives)
+    - [2.5.5. Common Smells​](#255-common-smells)
+    - [2.5.6. Tips](#256-tips)
   - [2.6. I - Interface segregation principle](#26-i---interface-segregation-principle)
   - [2.7. D - Dependency inversion principle](#27-d---dependency-inversion-principle)
 
@@ -204,7 +212,7 @@
     - Defines a family of algorithms​.
     - Encapsulates each algorithm​.
     - Makes the algorithms interchangeable within that family​.
-- Specification
+- **Specification**
 
 ### 2.4.5. Interfaces
 
@@ -252,9 +260,66 @@
 
 ## 2.5. L - Liskov substitution principle
 
+- If **S** is a subtype of **T**, then objects of type **T** may be replaced with objects of type **S**, without breaking the program.
+- The Liskov Substitution Principle states that Subtypes must be substitutable for their base types.
 - And the third one is the Liskov substitution principle, we should able to use subclasses instead of the upper classes from which they derive without needing to make any changes in our code.
-- So that means we can use interfaces which are changing to any implementation code.
+- So that means we can use **interfaces** which are changing to any implementation code.
 - These interfaces can be manage with the substitution each other.
+
+### 2.5.1. Ways of breaking substitutability​
+
+- Violating a Contract​.
+- Violating Covariance\Contravariance.
+
+### 2.5.2. Contracts
+
+- Programming to Contracts was elaborated by Bertrand Meyer​ [DbC](https://en.wikipedia.org/wiki/Design_by_contract).
+  - "Object-Oriented Software Construction" by Meyer is recommended​.
+  - Eiffel [Eiffel](<https://en.wikipedia.org/wiki/Eiffel_(programming_language)>).
+
+#### 2.5.2.1. What is contract?
+
+- Contracts have some semantic payload​.
+- Interfaces have no any semantic payload.
+- **Interfaces are not Contracts​.**
+
+#### 2.5.2.2. What constitutes a method's contract?​
+
+- Acceptable and unacceptable input values or types, and their meanings​.
+- Return values or types, and their meanings​.
+- Error and exception condition values or types that can occur, and their meanings​.
+- Side effects​.
+- Preconditions​.
+- Postconditions​.
+- Invariants.
+
+### 2.5.3. Code contracts in C#​
+
+- You can write contracts in C# with a library called "Code Contracts". ​Harness the power of static code verification on correctness [CodeContracts](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts).​
+- "Code Contracts" library is not very popular.
+
+### 2.5.4. The problem of representatives​
+
+- OOP can't directly map the relationships between objects in the real world into the same model of relationships between them in code​.
+- Child classes implement IS-A relationship with base classes - ​naive statement of OOP​.
+- Inheritors can require less and guarantee more but not vice-versa​.
+- Refused Bequest​.
+- Programming code just represents the concepts of square and rectangle.
+
+### 2.5.5. Common Smells​
+
+- Method throws NotSupportedException​.
+- Empty or degenerative implementation​.
+- Downcasts.
+
+### 2.5.6. Tips
+
+- Tell, Don't Ask principle​
+- LSP if often the result of OCP or ISP violations​
+- If two classes share some logic and they are not substitutable​
+  - Create new base class​
+  - Inherit those two classes from a base class ​
+  - Ensure that they are substitutable with the new base class
 
 ## 2.6. I - Interface segregation principle
 
