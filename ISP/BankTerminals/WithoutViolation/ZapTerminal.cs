@@ -1,10 +1,14 @@
-namespace WithViolation
+using System;
+using System.Runtime.InteropServices;
+
+namespace WithoutViolation
 {
-    public class ZonTerminal : IBankTerminal
+    public class ZapTerminal : IBankTerminal, IReadersCommunicable
     {
         public event EventHandler<PaymentOperationCompletedEventArgs> PaymentCompleted;
         public event EventHandler<PaymentOperationCompletedEventArgs> CancellationCompleted;
         public event EventHandler<TransactionCompletedEventArgs> TransactionCompleted;
+        private PdqTerminalServiceCommunicator _service = new PdqTerminalServiceCommunicator();
 
         public void BankHostTest()
         {
@@ -43,22 +47,22 @@ namespace WithViolation
 
         public string FindContactReader()
         {
-            throw new NotImplementedException();
+            return _service.FindContactReader();
         }
 
         public string FindNonContactReader()
         {
-            throw new NotImplementedException();
+            return _service.FindNonContactReader();
         }
 
         public bool IsContactReaderOnPort(string comPort)
         {
-            throw new NotImplementedException();
+            return _service.IsContactReaderOnPort(comPort);
         }
 
         public bool IsNonContactReaderOnPort(string comPort)
         {
-            throw new NotImplementedException();
+            return _service.IsNonContactReaderOnPort(comPort);
         }
     }
 }

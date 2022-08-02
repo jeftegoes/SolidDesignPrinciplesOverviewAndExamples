@@ -1,4 +1,4 @@
-namespace WithViolation
+namespace WithoutViolation
 {
     public class ZonTerminal : IBankTerminal
     {
@@ -39,26 +39,6 @@ namespace WithViolation
         public void Stop()
         {
 
-        }
-
-        public string FindContactReader()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string FindNonContactReader()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsContactReaderOnPort(string comPort)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsNonContactReaderOnPort(string comPort)
-        {
-            throw new NotImplementedException();
         }
     }
 }

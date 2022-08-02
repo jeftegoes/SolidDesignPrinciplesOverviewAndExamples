@@ -1,3 +1,6 @@
+using System;
+using System.Runtime.InteropServices;
+
 namespace WithViolation
 {
     public class ZapTerminal : IBankTerminal
@@ -5,40 +8,61 @@ namespace WithViolation
         public event EventHandler<PaymentOperationCompletedEventArgs> PaymentCompleted;
         public event EventHandler<PaymentOperationCompletedEventArgs> CancellationCompleted;
         public event EventHandler<TransactionCompletedEventArgs> TransactionCompleted;
+        private PdqTerminalServiceCommunicator _service = new PdqTerminalServiceCommunicator();
 
         public void BankHostTest()
         {
-            throw new NotImplementedException();
+
         }
 
         public void CancelPayment(string checkId, decimal amount)
         {
-            throw new NotImplementedException();
+
         }
 
         public void InterruptTransaction()
         {
-            throw new NotImplementedException();
+
         }
 
         public void Ping()
         {
-            throw new NotImplementedException();
+
         }
 
         public void Purchase(decimal amount, string checkId)
         {
-            throw new NotImplementedException();
+
         }
 
         public void Start()
         {
-            throw new NotImplementedException();
+
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+
+        }
+
+        public string FindContactReader()
+        {
+            return _service.FindContactReader();
+        }
+
+        public string FindNonContactReader()
+        {
+            return _service.FindNonContactReader();
+        }
+
+        public bool IsContactReaderOnPort(string comPort)
+        {
+            return _service.IsContactReaderOnPort(comPort);
+        }
+
+        public bool IsNonContactReaderOnPort(string comPort)
+        {
+            return _service.IsNonContactReaderOnPort(comPort);
         }
     }
 }

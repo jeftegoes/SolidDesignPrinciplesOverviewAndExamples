@@ -1,4 +1,4 @@
-namespace WithViolation
+namespace WithoutViolation
 {
     public interface IBankTerminal
     {
@@ -9,10 +9,6 @@ namespace WithViolation
         void Purchase(decimal amount, string checkId);
         void CancelPayment(string checkId, decimal amount);
         void InterruptTransaction();
-        bool IsContactReaderOnPort(string comPort);
-        bool IsNonContactReaderOnPort(string comPort);
-        string FindContactReader();
-        string FindNonContactReader();
 
         event EventHandler<PaymentOperationCompletedEventArgs> PaymentCompleted;
         event EventHandler<PaymentOperationCompletedEventArgs> CancellationCompleted;
