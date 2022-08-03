@@ -1,4 +1,4 @@
-# Solid overview <!-- omit in toc -->
+# Solid and meta principles overview <!-- omit in toc -->
 
 ## Contents <!-- omit in toc -->
 
@@ -36,7 +36,14 @@
     - [2.5.4. The problem of representatives​](#254-the-problem-of-representatives)
     - [2.5.5. Common Smells​](#255-common-smells)
     - [2.5.6. Tips](#256-tips)
-  - [2.6. I - Interface segregation principle](#26-i---interface-segregation-principle)
+  - [2.6. I - Interface Segregation Principle](#26-i---interface-segregation-principle)
+    - [2.6.1. What is Interface?](#261-what-is-interface)
+    - [2.6.2. Historical background](#262-historical-background)
+    - [2.6.3. Common smells](#263-common-smells)
+    - [2.6.4. Fixes](#264-fixes)
+    - [2.6.5. Related patterns](#265-related-patterns)
+    - [2.6.6. Adapter pattern](#266-adapter-pattern)
+    - [2.6.7. Tips](#267-tips)
   - [2.7. D - Dependency inversion principle](#27-d---dependency-inversion-principle)
 
 # 1. Intro
@@ -321,14 +328,52 @@
   - Inherit those two classes from a base class ​
   - Ensure that they are substitutable with the new base class
 
-## 2.6. I - Interface segregation principle
+## 2.6. I - Interface Segregation Principle
 
-- And the third one is the interface segregation principle.
-- Instead of to collecting all responsible turns into a single interface, we should create more customized interfaces.
-- We can separate the interfaces as per the responsibilities.
-- It will be manage
-- Easier to manage your interfaces and the dependencies.
-- And the last one is a dependency.
+- ISP states that Clients should not be forced to depend on methods they do not use.
+  - Prefer small, cohesive interfaces.
+- ISP violations result in classes that depend on things they do not need, increasing coupling and reducing flexibility and maintainability.
+
+### 2.6.1. What is Interface?
+
+- `Interface` is a reserved keywork in C# which allows to declare a non-implementable type consisting of member signatures.
+- Defines an API.
+- Public API of a class is an interface.
+
+### 2.6.2. Historical background
+
+- First public formulation belong to Uncle Bob.
+- Uncle Bob applied ISP working for xerox.
+- That was a printing system.
+
+### 2.6.3. Common smells
+
+- LSP violation smell often indicates a violation of ISP.
+
+### 2.6.4. Fixes
+
+- Client's code references a class but uses only a small portion of its API
+  - Fat interface => Segregate it
+  - Fat interface which is not under your control => Facade pattern
+
+### 2.6.5. Related patterns
+
+- Adapter pattern
+- Facade
+
+### 2.6.6. Adapter pattern
+
+- Convert the interface of a class into another interface clients expect.
+- Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+
+### 2.6.7. Tips
+
+- General algorithm of "fixing" fat interfaces:
+  - Create narrower interface.
+  - Fat interface inherits from that narrow interface.
+  - Client uses narrow interface.
+- Don't abuse ISP by creating tons of small interfaces.
+- Keep an interface within the client's assembly if possible.
 
 ## 2.7. D - Dependency inversion principle
 
