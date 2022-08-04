@@ -45,6 +45,9 @@
     - [2.6.6. Adapter pattern](#266-adapter-pattern)
     - [2.6.7. Tips](#267-tips)
   - [2.7. D - Dependency inversion principle](#27-d---dependency-inversion-principle)
+  - [2.8. Meta principles](#28-meta-principles)
+    - [2.8.1. DRY - Don't Repeat Yourself](#281-dry---dont-repeat-yourself)
+      - [2.8.1.1. Common violations of DRY](#2811-common-violations-of-dry)
 
 # 1. Intro
 
@@ -380,3 +383,114 @@
 - Dependencies between classes should be as low as possible, and especially upper classes should not be dependent on the lower classes.
 - But these are the main principles and all these principles is very similar to each other.
 - We have some connection with these principles, but we can see that how we can apply these principles one by one when we are developing Ordering microservices.
+
+## 2.8. Meta principles
+
+### 2.8.1. DRY - Don't Repeat Yourself
+
+- A substantial number of bugs in software are caussed by repetitive code.
+- Every piece of knowledge must have a single, unambiguous representation in the system.
+
+#### 2.8.1.1. Common violations of DRY
+
+- Magic strings or any other magic values.
+- Duplicate logic in multiple locations.
+- Repeated `if-then` logic or multiple switch-cases scattered throughout the code base.
+
+- Examples with magic values:
+
+  - Bad:
+
+  ```
+  int reponseCode = GetDeviceResponse();
+  if (responseCode == 188)
+  {
+
+  }
+  ```
+
+  - Good:
+
+  ```
+  const int NoConnection = 188;
+  int reponseCode = GetDeviceResponse();
+  if (responseCode == NoConnection)
+  {
+
+  }
+  ```
+
+  ***
+
+  - Bad:
+
+  ```
+  public class MagicValues
+  {
+  	public void AcceptCard()
+  	{
+  		var d = new Device();
+  		d.SendCommand(1);
+  		d.SendCommand(2);
+  		d.SendCommand(9);
+  	}
+
+  	public void DispenseCard()
+  	{
+  		var d = new Device();
+  		d.SendCommand(1);
+  		d.SendCommand(3);
+  		d.SendCommand(9);​
+  	}
+  }
+  ```
+
+  - Good:
+
+  ```
+  public class NoMagic
+  {
+  	private const int Initialize = 1;
+  	private const int Terminate = 9;
+
+  	public void AcceptCard()
+  	{
+  		var d = new Device();
+  		d.SendCommand(Initialize);
+  		d.SendCommand(2);
+  		d.SendCommand(Terminate);
+  	}
+
+  	public void DispenseCard()
+  	{
+  		var d = new Device();
+  		d.SendCommand(Initialize);
+  		d.SendCommand(3);
+  		d.SendCommand(Terminate);
+  	}
+  }
+  ```
+
+  - Good without duplicated code:
+
+  ```
+  public class NoDuplicateLogic {
+  	private const int Initialize = 1;
+  	private const int Terminate = 9;
+
+  	public void AcceptCard() {
+  		ExecuteCommand(2);
+  	}
+
+  	public void DispenseCard() {
+  		ExecuteCommand(3);
+  	}
+
+  	private void ExecuteCommand(byte command) {
+  		var d = new Device();
+  		d.SendCommand(Initialize);
+  		d.SendCommand(command);
+  		d.SendCommand(Terminate);
+  	}
+  }
+  ```
