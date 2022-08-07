@@ -10,44 +10,45 @@
 - [2. What is SOLID?​](#2-what-is-solid)
   - [2.1. How SOLID improve OO-programming skills​](#21-how-solid-improve-oo-programming-skills)
   - [2.2. Why we need SOLID?​](#22-why-we-need-solid)
-  - [2.3. SRP - Single Responsibility Principle](#23-srp---single-responsibility-principle)
-    - [2.3.1. Calculating responsibilities](#231-calculating-responsibilities)
-    - [2.3.2. Common SRP Violation](#232-common-srp-violation)
-    - [2.3.3. Design pattern Façade](#233-design-pattern-façade)
-    - [2.3.4. Others related patterns](#234-others-related-patterns)
-    - [2.3.5. Resume](#235-resume)
-  - [2.4. O - Open/closed principle](#24-o---openclosed-principle)
-    - [2.4.1. Why OCP?](#241-why-ocp)
-    - [2.4.2. Single choice principle:](#242-single-choice-principle)
-    - [2.4.3. Development methodologies​](#243-development-methodologies)
-    - [2.4.4. Others related patterns](#244-others-related-patterns)
-    - [2.4.5. Interfaces](#245-interfaces)
-    - [2.4.6. Abstract Classes](#246-abstract-classes)
-    - [2.4.7. Interfaces VS Abstract Classes​](#247-interfaces-vs-abstract-classes)
-    - [2.4.8. Common Smells​](#248-common-smells)
-    - [2.4.9. Adhering to OCP​](#249-adhering-to-ocp)
-    - [2.4.10. Resume](#2410-resume)
-  - [2.5. L - Liskov substitution principle](#25-l---liskov-substitution-principle)
-    - [2.5.1. Ways of breaking substitutability​](#251-ways-of-breaking-substitutability)
-    - [2.5.2. Contracts](#252-contracts)
-      - [2.5.2.1. What is contract?](#2521-what-is-contract)
-      - [2.5.2.2. What constitutes a method's contract?​](#2522-what-constitutes-a-methods-contract)
-    - [2.5.3. Code contracts in C#​](#253-code-contracts-in-c)
-    - [2.5.4. The problem of representatives​](#254-the-problem-of-representatives)
-    - [2.5.5. Common Smells​](#255-common-smells)
-    - [2.5.6. Tips](#256-tips)
-  - [2.6. I - Interface Segregation Principle](#26-i---interface-segregation-principle)
-    - [2.6.1. What is Interface?](#261-what-is-interface)
-    - [2.6.2. Historical background](#262-historical-background)
-    - [2.6.3. Common smells](#263-common-smells)
-    - [2.6.4. Fixes](#264-fixes)
-    - [2.6.5. Related patterns](#265-related-patterns)
-    - [2.6.6. Adapter pattern](#266-adapter-pattern)
-    - [2.6.7. Tips](#267-tips)
-  - [2.7. D - Dependency inversion principle](#27-d---dependency-inversion-principle)
-  - [2.8. Meta principles](#28-meta-principles)
-    - [2.8.1. DRY - Don't Repeat Yourself](#281-dry---dont-repeat-yourself)
-      - [2.8.1.1. Common violations of DRY](#2811-common-violations-of-dry)
+- [3. Principles](#3-principles)
+  - [3.1. SRP - Single Responsibility Principle](#31-srp---single-responsibility-principle)
+    - [3.1.1. Calculating responsibilities](#311-calculating-responsibilities)
+    - [3.1.2. Common SRP Violation](#312-common-srp-violation)
+    - [3.1.3. Design pattern Façade](#313-design-pattern-façade)
+    - [3.1.4. Others related patterns](#314-others-related-patterns)
+    - [3.1.5. Resume](#315-resume)
+  - [3.2. O - Open/closed principle](#32-o---openclosed-principle)
+    - [3.2.1. Why OCP?](#321-why-ocp)
+    - [3.2.2. Single choice principle:](#322-single-choice-principle)
+    - [3.2.3. Development methodologies​](#323-development-methodologies)
+    - [3.2.4. Others related patterns](#324-others-related-patterns)
+    - [3.2.5. Interfaces](#325-interfaces)
+    - [3.2.6. Abstract Classes](#326-abstract-classes)
+    - [3.2.7. Interfaces VS Abstract Classes​](#327-interfaces-vs-abstract-classes)
+    - [3.2.8. Common Smells​](#328-common-smells)
+    - [3.2.9. Adhering to OCP​](#329-adhering-to-ocp)
+    - [3.2.10. Resume](#3210-resume)
+  - [3.3. L - Liskov substitution principle](#33-l---liskov-substitution-principle)
+    - [3.3.1. Ways of breaking substitutability​](#331-ways-of-breaking-substitutability)
+    - [3.3.2. Contracts](#332-contracts)
+      - [3.3.2.1. What is contract?](#3321-what-is-contract)
+      - [3.3.2.2. What constitutes a method's contract?​](#3322-what-constitutes-a-methods-contract)
+    - [3.3.3. Code contracts in C#​](#333-code-contracts-in-c)
+    - [3.3.4. The problem of representatives​](#334-the-problem-of-representatives)
+    - [3.3.5. Common Smells​](#335-common-smells)
+    - [3.3.6. Tips](#336-tips)
+  - [3.4. I - Interface Segregation Principle](#34-i---interface-segregation-principle)
+    - [3.4.1. What is Interface?](#341-what-is-interface)
+    - [3.4.2. Historical background](#342-historical-background)
+    - [3.4.3. Common smells](#343-common-smells)
+    - [3.4.4. Fixes](#344-fixes)
+    - [3.4.5. Related patterns](#345-related-patterns)
+    - [3.4.6. Adapter pattern](#346-adapter-pattern)
+    - [3.4.7. Tips](#347-tips)
+  - [3.5. D - Dependency inversion principle](#35-d---dependency-inversion-principle)
+- [4. Meta principles](#4-meta-principles)
+  - [4.1. DRY - Don't Repeat Yourself](#41-dry---dont-repeat-yourself)
+    - [4.1.1. Common violations of DRY](#411-common-violations-of-dry)
 
 # 1. Intro
 
@@ -113,7 +114,9 @@
 - Powerful programming language doesn't guarantee good design​.
 - Designing skills are prerequisite for serious programming.
 
-## 2.3. SRP - Single Responsibility Principle
+# 3. Principles
+
+## 3.1. SRP - Single Responsibility Principle
 
 - Every object should have a ​single responsibility, ​and that responsibility ​should be entirely encapsulated ​by the class.
 - This will be you can't think about that, a **class** can only be changed for the sake of the purpose, it is the responsibility that is imposed on that class.
@@ -121,7 +124,7 @@
 - We can talk about all the class and this class, only responsible one job and do not do anything else inside of that class or into the methods.
 - _There should never be more than one reason for a class to change._ Robert C. Martin aka Uncle Bob
 
-### 2.3.1. Calculating responsibilities
+### 3.1.1. Calculating responsibilities
 
 - Axes of changing requirements​.
 - API users are the source of changes.
@@ -132,12 +135,12 @@
 - A set of functions or an interface ​is considered cohesive ​when each function ​is closely related to another.
 - Coupling indicates ​how dependent modules are ​on the inner working of each other.
 
-### 2.3.2. Common SRP Violation
+### 3.1.2. Common SRP Violation
 
 - Mixing logic and infrastructure​.
 - A class or a module serves different layers.
 
-### 2.3.3. Design pattern Façade
+### 3.1.3. Design pattern Façade
 
 - Applying the SRP leads to appearance of many small classes​.
   - It is hard to understand the API of too many small classes​.
@@ -148,14 +151,14 @@
     - Provide for a client a simple API for interaction with a set of complex objects.
     - Provide for a client a cleaner API for interaction with poorly designed API.
 
-### 2.3.4. Others related patterns
+### 3.1.4. Others related patterns
 
 - Decorator​
   - Decorator allows the behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.
 - Composite
   - Composite pattern allows to compose objects into tree structures to represent part-whole hierarchies, letting clients treat individual objects and compositions of objects uniformly.
 
-### 2.3.5. Resume
+### 3.1.5. Resume
 
 - Applying SRP we want to separate different concerns.
 - A class should do one thing, and do it well!​
@@ -169,13 +172,13 @@
 - Apply Façade pattern to simplify the API​.
 - Modules that change frequently should be isolated ​from the other parts of the system.
 
-## 2.4. O - Open/closed principle
+## 3.2. O - Open/closed principle
 
 - Software entities should be open for extension, but closed for modification.
 - We should be able to introduce a change by adding new code, not by changing the existing.
 - **Polymorphism is the Answer.​**
 
-### 2.4.1. Why OCP?
+### 3.2.1. Why OCP?
 
 - There is a high chance of introducing bugs ​during the modification process​.
 - It's hard to modify the behavior of an API ​which is already in use by many clients.
@@ -183,7 +186,7 @@
 - We must modify the existing code if it contains a bug.​
 - The Protected Variation pattern means the following: ​Identify points of predicted variation and create a stable interface around them.
 
-### 2.4.2. Single choice principle:
+### 3.2.2. Single choice principle:
 
 ```
     public class BankTerminalFactory​
@@ -205,14 +208,14 @@
 
 - We can't achieve a super-supple design which allows to introduce any possible features.
 
-### 2.4.3. Development methodologies​
+### 3.2.3. Development methodologies​
 
 - Waterfall​
   - Try to foresee all the possible details​.
 - Agile
   - Iterative development process with high involvement of a customer​.
 
-### 2.4.4. Others related patterns
+### 3.2.4. Others related patterns
 
 - Template Method
   - It defines the skeleton of an algorithm in an operation, deferring some steps to subclasses.
@@ -224,7 +227,7 @@
     - Makes the algorithms interchangeable within that family​.
 - **Specification**
 
-### 2.4.5. Interfaces
+### 3.2.5. Interfaces
 
 - Interfaces can't be easily changed without breaking existing clients​.
 - Interfaces are easily extendable by clients.
@@ -232,7 +235,7 @@
   - An interface is suppler from the client's perspective: any class can implement as many interfaces as it wants to​.
   - An interface is more rigid from the developer's perspective: it can't be easily changed and it does not support any kind of reusability.
 
-### 2.4.6. Abstract Classes
+### 3.2.6. Abstract Classes
 
 - Supports reusability​.
 - Supports encapsulation.​
@@ -241,7 +244,7 @@
   - An abstract class is supple from the developer's perspective​.
   - An abstract class is rigid from the client's perspective.
 
-### 2.4.7. Interfaces VS Abstract Classes​
+### 3.2.7. Interfaces VS Abstract Classes​
 
 - Use abstract classes for building internal APIs​
 - Use interfaces for providing external points of extension.
@@ -249,17 +252,17 @@
   - An abstract class is supple from the developer's perspective​.
   - An abstract class is rigid from the client's perspective.
 
-### 2.4.8. Common Smells​
+### 3.2.8. Common Smells​
 
 - Many conditional branches with if\else or switch\case statements.​
 
-### 2.4.9. Adhering to OCP​
+### 3.2.9. Adhering to OCP​
 
 - Parameterization with delegates. "Chain of Responsibility" design pattern.​
 - Classic Inheritance or "Visitor" design pattern​.
 - Composition VS Inheritance. "Strategy" design pattern.
 
-### 2.4.10. Resume
+### 3.2.10. Resume
 
 - Design should be open for extensions and closed for modification​.
 - Isolate a responsibility for creating objects in a single module​ (Single Choice Principle)​.
@@ -268,7 +271,7 @@
 - Abstract class is suppler from the developer's perspective​.
 - To overcome the problem of predicting the future, we rely on "agile design".
 
-## 2.5. L - Liskov substitution principle
+## 3.3. L - Liskov substitution principle
 
 - If **S** is a subtype of **T**, then objects of type **T** may be replaced with objects of type **S**, without breaking the program.
 - The Liskov Substitution Principle states that Subtypes must be substitutable for their base types.
@@ -276,24 +279,24 @@
 - So that means we can use **interfaces** which are changing to any implementation code.
 - These interfaces can be manage with the substitution each other.
 
-### 2.5.1. Ways of breaking substitutability​
+### 3.3.1. Ways of breaking substitutability​
 
 - Violating a Contract​.
 - Violating Covariance\Contravariance.
 
-### 2.5.2. Contracts
+### 3.3.2. Contracts
 
 - Programming to Contracts was elaborated by Bertrand Meyer​ [DbC](https://en.wikipedia.org/wiki/Design_by_contract).
   - "Object-Oriented Software Construction" by Meyer is recommended​.
   - Eiffel [Eiffel](<https://en.wikipedia.org/wiki/Eiffel_(programming_language)>).
 
-#### 2.5.2.1. What is contract?
+#### 3.3.2.1. What is contract?
 
 - Contracts have some semantic payload​.
 - Interfaces have no any semantic payload.
 - **Interfaces are not Contracts​.**
 
-#### 2.5.2.2. What constitutes a method's contract?​
+#### 3.3.2.2. What constitutes a method's contract?​
 
 - Acceptable and unacceptable input values or types, and their meanings​.
 - Return values or types, and their meanings​.
@@ -303,12 +306,12 @@
 - Postconditions​.
 - Invariants.
 
-### 2.5.3. Code contracts in C#​
+### 3.3.3. Code contracts in C#​
 
 - You can write contracts in C# with a library called "Code Contracts". ​Harness the power of static code verification on correctness [CodeContracts](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts).​
 - "Code Contracts" library is not very popular.
 
-### 2.5.4. The problem of representatives​
+### 3.3.4. The problem of representatives​
 
 - OOP can't directly map the relationships between objects in the real world into the same model of relationships between them in code​.
 - Child classes implement IS-A relationship with base classes - ​naive statement of OOP​.
@@ -316,13 +319,13 @@
 - Refused Bequest​.
 - Programming code just represents the concepts of square and rectangle.
 
-### 2.5.5. Common Smells​
+### 3.3.5. Common Smells​
 
 - Method throws NotSupportedException​.
 - Empty or degenerative implementation​.
 - Downcasts.
 
-### 2.5.6. Tips
+### 3.3.6. Tips
 
 - Tell, Don't Ask principle​
 - LSP if often the result of OCP or ISP violations​
@@ -331,45 +334,45 @@
   - Inherit those two classes from a base class ​
   - Ensure that they are substitutable with the new base class
 
-## 2.6. I - Interface Segregation Principle
+## 3.4. I - Interface Segregation Principle
 
 - ISP states that Clients should not be forced to depend on methods they do not use.
   - Prefer small, cohesive interfaces.
 - ISP violations result in classes that depend on things they do not need, increasing coupling and reducing flexibility and maintainability.
 
-### 2.6.1. What is Interface?
+### 3.4.1. What is Interface?
 
 - `Interface` is a reserved keywork in C# which allows to declare a non-implementable type consisting of member signatures.
 - Defines an API.
 - Public API of a class is an interface.
 
-### 2.6.2. Historical background
+### 3.4.2. Historical background
 
 - First public formulation belong to Uncle Bob.
 - Uncle Bob applied ISP working for xerox.
 - That was a printing system.
 
-### 2.6.3. Common smells
+### 3.4.3. Common smells
 
 - LSP violation smell often indicates a violation of ISP.
 
-### 2.6.4. Fixes
+### 3.4.4. Fixes
 
 - Client's code references a class but uses only a small portion of its API
   - Fat interface => Segregate it
   - Fat interface which is not under your control => Facade pattern
 
-### 2.6.5. Related patterns
+### 3.4.5. Related patterns
 
 - Adapter pattern
 - Facade
 
-### 2.6.6. Adapter pattern
+### 3.4.6. Adapter pattern
 
 - Convert the interface of a class into another interface clients expect.
 - Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
-### 2.6.7. Tips
+### 3.4.7. Tips
 
 - General algorithm of "fixing" fat interfaces:
   - Create narrower interface.
@@ -378,20 +381,28 @@
 - Don't abuse ISP by creating tons of small interfaces.
 - Keep an interface within the client's assembly if possible.
 
-## 2.7. D - Dependency inversion principle
+## 3.5. D - Dependency inversion principle
 
 - Dependencies between classes should be as low as possible, and especially upper classes should not be dependent on the lower classes.
 - But these are the main principles and all these principles is very similar to each other.
 - We have some connection with these principles, but we can see that how we can apply these principles one by one when we are developing Ordering microservices.
 
-## 2.8. Meta principles
+- Types of injection
+  - Constructor injection (Best approach):
+    - To be passed via constructor by client e.g.: `var registerCard = new RegisterCardRepository(new RegisterCard)`.
+  - Property injection:
+    - To be passed via property by client e.g.: `IRegisterCard RegisterCard { get; set; }`.
+  - Method injection:
+    - To be passed via method by client e.g.: `public void RegisterCard(Card card, Client client) { ... }`.
 
-### 2.8.1. DRY - Don't Repeat Yourself
+# 4. Meta principles
+
+## 4.1. DRY - Don't Repeat Yourself
 
 - A substantial number of bugs in software are caussed by repetitive code.
 - Every piece of knowledge must have a single, unambiguous representation in the system.
 
-#### 2.8.1.1. Common violations of DRY
+### 4.1.1. Common violations of DRY
 
 - Magic strings or any other magic values.
 - Duplicate logic in multiple locations.
