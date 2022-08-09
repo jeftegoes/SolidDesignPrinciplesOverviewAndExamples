@@ -73,33 +73,38 @@
 - [4. Meta principles](#4-meta-principles)
   - [4.1. DRY - Don't Repeat Yourself](#41-dry---dont-repeat-yourself)
     - [4.1.1. Common violations of DRY](#411-common-violations-of-dry)
+  - [4.2. KISS - Keep it Simple, Stupid](#42-kiss---keep-it-simple-stupid)
+    - [4.2.1. What is Simplicity?](#421-what-is-simplicity)
+    - [4.2.2. Accidental & Essential Complexity](#422-accidental--essential-complexity)
+    - [4.2.3. Achieving Simplicity](#423-achieving-simplicity)
+    - [4.2.4. Simplicity](#424-simplicity)
 
 # 1. Intro
 
 ## 1.1. Building software
 
-- Big design upfront is ​very expensive in software development​.
-- No guarantee that we ​take into account all the possible requirements.
+- Big design upfront is very expensive in software development.
+- No guarantee that we take into account all the possible requirements.
 - Requirements tend to change very quickly .
 - Keep the design as clean as you can.
 
 ## 1.2. Design smells
 
 - Rigidity:
-  - Software is rigid ​if the cost of making a single change is very high
+  - Software is rigid if the cost of making a single change is very high
     - **Reason - tight coupling between modules.**
 - Fragility:
-  - Software is fragile if small changes ​in one module cause bugs appearance in other.
+  - Software is fragile if small changes in one module cause bugs appearance in other.
     - **Reason – tight coupling between components.**
 - Immobility:
-  - Software is immobile when ​it's components can't be reused in other systems.
+  - Software is immobile when it's components can't be reused in other systems.
     - **Reason - tight coupling between components.**
 - Viscosity:
   - The software is viscose when adding a single feature evokes dealing with tons of aspects.
     - **Reason - tight coupling between components.**
 - Needless Complexity:
-  - Software is needlessly complex if ​developers are trying to forecast the future, ​introducing excessive points of extension.
-  - Concentrate on the current requirements, ​constructing the supple architecture ​which can bend to meet new requirements.
+  - Software is needlessly complex if developers are trying to forecast the future, introducing excessive points of extension.
+  - Concentrate on the current requirements, constructing the supple architecture which can bend to meet new requirements.
 
 ## 1.3. Design principles - SOLID
 
@@ -112,7 +117,7 @@
 
 ## 1.4. Dependency Management
 
-- OO-languages can harness ​the power of dynamic dispatch.
+- OO-languages can harness the power of dynamic dispatch.
 - Proper dependency management - key to a good architecture.
 
 # 2. What is SOLID?
@@ -121,16 +126,16 @@
   - Single Responsibility Principle.
   - Open/Closed Principle.
   - Liskov Substitution Principle.
-  - Interface Segregation Principle.​
+  - Interface Segregation Principle.
   - Dependency Inversion Principle.
 
 ## 2.1. How SOLID improve OO-programming skills
 
-- Meta principles on which all the other ​development principles are based.
+- Meta principles on which all the other development principles are based.
 - Symptoms of code defects.
 - Foundations of SOLID principles.
 - Detect the violations of SOLID principles and how to fix the problems.
-- How meta and SOLID principles are related to each other ​and how to find the balance between them.
+- How meta and SOLID principles are related to each other and how to find the balance between them.
 
 ## 2.2. Why we need SOLID?
 
@@ -142,7 +147,7 @@
 
 ## 3.1. SRP - Single Responsibility Principle
 
-- Every object should have a ​single responsibility, ​and that responsibility ​should be entirely encapsulated ​by the class.
+- Every object should have a single responsibility, and that responsibility should be entirely encapsulated by the class.
 - This will be you can't think about that, a **class** can only be changed for the sake of the purpose, it is the responsibility that is imposed on that class.
 - So that class has only one job to do.
 - We can talk about all the class and this class, only responsible one job and do not do anything else inside of that class or into the methods.
@@ -152,12 +157,12 @@
 
 - Axes of changing requirements.
 - API users are the source of changes.
-- More responsibilities a class has, ​the more likely it's going to be changed.
-- Classes with too many responsibilities ​are hard to understand!
-- When SRP is violated, responsibilities ​start to collate with each other. ​They become coupled.
+- More responsibilities a class has, the more likely it's going to be changed.
+- Classes with too many responsibilities are hard to understand!
+- When SRP is violated, responsibilities start to collate with each other. They become coupled.
 - Gather all the same responsibilities together and separate from each other those which are different.
-- A set of functions or an interface ​is considered cohesive ​when each function ​is closely related to another.
-- Coupling indicates ​how dependent modules are ​on the inner working of each other.
+- A set of functions or an interface is considered cohesive when each function is closely related to another.
+- Coupling indicates how dependent modules are on the inner working of each other.
 
 ### 3.1.2. Common SRP Violation
 
@@ -170,7 +175,7 @@
   - It is hard to understand the API of too many small classes.
     - "Façade" design pattern may come to the rescue.
 - Façade:
-  - The Façade's responsibility ​is to bring the functionality ​required by a client together.
+  - The Façade's responsibility is to bring the functionality required by a client together.
   - Reasons for applying Façade:
     - Provide for a client a simple API for interaction with a set of complex objects.
     - Provide for a client a cleaner API for interaction with poorly designed API.
@@ -194,7 +199,7 @@
 - When SRP is violated, responsibilities start to collate with each other.
 - Don't abuse the SRP.
 - Apply Façade pattern to simplify the API.
-- Modules that change frequently should be isolated ​from the other parts of the system.
+- Modules that change frequently should be isolated from the other parts of the system.
 
 ## 3.2. O - Open/closed principle
 
@@ -204,11 +209,11 @@
 
 ### 3.2.1. Why OCP?
 
-- There is a high chance of introducing bugs ​during the modification process.
-- It's hard to modify the behavior of an API ​which is already in use by many clients.
+- There is a high chance of introducing bugs during the modification process.
+- It's hard to modify the behavior of an API which is already in use by many clients.
 - When customers ask for a new feature they think that features will be added, they don't think that developers will modify anything.
 - We must modify the existing code if it contains a bug.
-- The Protected Variation pattern means the following: ​Identify points of predicted variation and create a stable interface around them.
+- The Protected Variation pattern means the following: Identify points of predicted variation and create a stable interface around them.
 
 ### 3.2.2. Single choice principle:
 
@@ -245,7 +250,7 @@
   - It defines the skeleton of an algorithm in an operation, deferring some steps to subclasses.
   - Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 - Strategy
-  - Strategy enables an algorithm's behavior to be selected at runtime. ​The strategy pattern:
+  - Strategy enables an algorithm's behavior to be selected at runtime. The strategy pattern:
     - Defines a family of algorithms.
     - Encapsulates each algorithm.
     - Makes the algorithms interchangeable within that family.
@@ -289,7 +294,7 @@
 ### 3.2.10. Resume
 
 - Design should be open for extensions and closed for modification.
-- Isolate a responsibility for creating objects in a single module​ (Single Choice Principle).
+- Isolate a responsibility for creating objects in a single module (Single Choice Principle).
 - Related patterns: "Template Method" and "Strategy".
 - Interface is suppler from the client's perspective.
 - Abstract class is suppler from the developer's perspective.
@@ -310,7 +315,7 @@
 
 ### 3.3.2. Contracts
 
-- Programming to Contracts was elaborated by Bertrand Meyer​ [DbC](https://en.wikipedia.org/wiki/Design_by_contract).
+- Programming to Contracts was elaborated by Bertrand Meyer [DbC](https://en.wikipedia.org/wiki/Design_by_contract).
   - "Object-Oriented Software Construction" by Meyer is recommended.
   - Eiffel [Eiffel](<https://en.wikipedia.org/wiki/Eiffel_(programming_language)>).
 
@@ -332,13 +337,13 @@
 
 ### 3.3.3. Code contracts in C#
 
-- You can write contracts in C# with a library called "Code Contracts". ​Harness the power of static code verification on correctness [CodeContracts](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts).
+- You can write contracts in C# with a library called "Code Contracts". Harness the power of static code verification on correctness [CodeContracts](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts).
 - "Code Contracts" library is not very popular.
 
 ### 3.3.4. The problem of representatives
 
 - OOP can't directly map the relationships between objects in the real world into the same model of relationships between them in code.
-- Child classes implement IS-A relationship with base classes - ​naive statement of OOP.
+- Child classes implement IS-A relationship with base classes - naive statement of OOP.
 - Inheritors can require less and guarantee more but not vice-versa.
 - Refused Bequest.
 - Programming code just represents the concepts of square and rectangle.
@@ -439,13 +444,13 @@
 
 ### 3.5.4. Volatile and Stable Dependencies
 
-- Dependencies can be divided into two camps:​
+- Dependencies can be divided into two camps:
   - Volatile.
   - Stable.
 
 #### 3.5.4.1. Volatile Dependencies
 
-- A dependency is volatile if any of the following criteria is true:​
+- A dependency is volatile if any of the following criteria is true:
   - Dependency itself depends on the environment (web servers, db).
   - Dependency doesn't yet exist and is still under development.
   - Dependency which is not installed on all machines of developers.
@@ -459,7 +464,7 @@
 
 - IoC reflects the model of relationships between a caller and a callee.
 - Classic flow of control implies that a client has a full control over the environment and sequence of calls to library methods.
-- IoC implies that a callee takes control over some calls between caller and callee.​ (callbacks is the simplest form).
+- IoC implies that a callee takes control over some calls between caller and callee. (callbacks is the simplest form).
 - Frameworks rule the client's code.
 
 #### 3.5.5.2. DIP
@@ -483,12 +488,12 @@
 
 - Tends to accumulate many dependencies.
   - Smell of SRP violation, consider extracting a class.
-- Several dependencies tend ​to be passed in together:
+- Several dependencies tend to be passed in together:
 
   ```
     interface IDependency1 { }
-    interface IDependency2 { }​
-    interface IDependency3 { }​
+    interface IDependency2 { }
+    interface IDependency3 { }
     interface IDependency4 { }
 
     class ViewModel
@@ -524,14 +529,14 @@
     }
   ```
 
-- Non-obligatory dependencies​:
+- Non-obligatory dependencies:
 
   ```
     public class Customer {
       private ILogger _logger = new Logger();
 
       public Customer() {}
-    ​
+
       public Customer(ILogger logger) {
           _logger = logger;
       }
@@ -568,14 +573,14 @@
     public Customer()
     {
     }
-    
+
     public ILogger Logger { get; set; } = new Logger();
   }
 ```
 
 #### 3.5.7.3. Method Injection
 
-- Apply if only one method uses a dependency ​or that dependency changes from one call to another.
+- Apply if only one method uses a dependency or that dependency changes from one call to another.
 
 ```
   public interface ICurrencyRateProvider {
@@ -592,7 +597,7 @@
 ##### 3.5.7.3.1. Pitfalls
 
 - SRP Violation.
-- IoC-Containers don’t inject dependencies into methods.
+- IoC-Containers don't inject dependencies into methods.
 
 ### 3.5.8. Architectural Implications
 
@@ -620,12 +625,12 @@
 #### 3.5.8.4. Enlarged Domain-Centric Model
 
 - Ports and Adapters architecture.
-- **Ports are seams** we introduce by extracting interfaces ​and **​adapters are plugins** which come from the boundary of a system.
+- **Ports are seams** we introduce by extracting interfaces and **adapters are plugins** which come from the boundary of a system.
 - Strive to keep the graph as flatter as you can.
 - Who is responsible for keeping the control over the dependencies instantiation and their lifetime?
   - Answer: "Main as the infrastructural point."
   - Conforms to "Single Choice" principle.
-  - Only Main knows about dependencies​ and their relationships.
+  - Only Main knows about dependencies and their relationships.
 
 #### 3.5.8.5. Pure DI and IoC-Containers
 
@@ -707,7 +712,7 @@
   		var d = new Device();
   		d.SendCommand(1);
   		d.SendCommand(3);
-  		d.SendCommand(9);​
+  		d.SendCommand(9);
   	}
   }
   ```
@@ -761,3 +766,50 @@
   	}
   }
   ```
+
+## 4.2. KISS - Keep it Simple, Stupid
+
+- "Make everything as simple as possible, but not simpler" – _Albert Einstein_
+- Simplicity is a key goal in design.
+  - YAGNI is about removing unnecessary code.
+  - KISS is about making the simplest implementation.
+- KISS definition, "A simple solution is better than a complex one, even if the solution look stupid".
+
+### 4.2.1. What is Simplicity?
+
+- Simplicity is the state or equality of being simple.
+- Something which is easy to understand or explain can be considered simple, in contrast to something complicated.
+- The feeling of simplicity is relative.
+
+### 4.2.2. Accidental & Essential Complexity
+
+- Complexity imposed by the domain itself is called the "essential complexity".
+- "Accidental complexity" is the complexity of our solutions which are intended to solve the problems of the domain.
+
+### 4.2.3. Achieving Simplicity
+
+- Main technique is **Decomposition**.
+  - Decomposition underlies all the SOLID principles.
+- SOLID are aimed at achieving simplest solutions;
+  - Abusing SOLID leads to unnecessary complexity! => Unity and Struggle of Opposites law.
+- Prefer composition over inheritance where possible.
+- Stick with if-else and switch-case statements until you see that you need to introduce **polymorphism**.
+- Avoid preemptive optimizations:
+  - In 90% of cases slower solutions work enough fast..
+  - The exceptions: app main aspect of which is the performance.
+- Smaller classes and smaller methods are better:
+  - The best method is a one-liner "Extract till you drop" technique.
+- Don't rush to extract utility classes for private methods which are used from a single place within a class, leave it as it is until the other parts of code will require that method as well.
+- Don't write parameterized general methods, prefer methods which solve a specific problem.
+- Divide and conquer.
+- Strive to avoid comments.
+- Write prototypes and don't be afraid to throw them away.
+- Keep the number of entities which solve a problem roughly from 5 to 7.
+- **Constantly work on simplifying your code base**.
+- Keep the amount of optimized code closer to 5-10%.
+
+### 4.2.4. Simplicity
+
+- Two values of software:
+  - Correctness.
+  - Good design.
