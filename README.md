@@ -78,6 +78,16 @@
     - [4.2.2. Accidental & Essential Complexity](#422-accidental--essential-complexity)
     - [4.2.3. Achieving Simplicity](#423-achieving-simplicity)
     - [4.2.4. Simplicity](#424-simplicity)
+  - [4.3. Yagni - You Ain't Gonna Need It](#43-yagni---you-aint-gonna-need-it)
+    - [4.3.1. Worse is better](#431-worse-is-better)
+    - [4.3.2. YAGNI Violation](#432-yagni-violation)
+      - [Questions](#questions)
+      - [Challenges](#challenges)
+  - [4.4. SoC - Separation of Concerns](#44-soc---separation-of-concerns)
+  - [4.5. CQS - Command-Query Separation](#45-cqs---command-query-separation)
+  - [4.6. LoD - Law of Demeter](#46-lod---law-of-demeter)
+    - [4.6.1. Scenario Customer vs Paperboy](#461-scenario-customer-vs-paperboy)
+  - [4.7. Principle of Least Astonishment](#47-principle-of-least-astonishment)
 
 # 1. Intro
 
@@ -813,3 +823,150 @@
 - Two values of software:
   - Correctness.
   - Good design.
+
+## 4.3. Yagni - You Ain't Gonna Need It
+
+- YAGNI is all about avoiding overengineering.
+- There is no a well-defined criterion to measure the "YAGNI-ness".
+- "Always implement things when you actually need them, never when you just foresee that you need them". _Ron Jeffries_
+
+### 4.3.1. Worse is better
+
+- A model of software design and implementation which has the following characteristics:
+  - Simplicity.
+  - Correctness.
+  - Consistency.
+  - Completeness.
+- "If you do something for a future need that doesn't actually increase the complexity of the software, then there's no reason to invoke YAGNI." _Martin Fowler_
+- Don't follow any principles blindly.
+- YAGNI depends on supporting practices, follow other practices such as Continuous Integration, Refactoring, Unit Testing as well.
+
+### 4.3.2. YAGNI Violation
+
+- A team is working on a payment system which interoperates with many devices:
+  - Working on a current version, you need to implement a driver for interoperating with the model "Z" of a bill dispenser.
+  - At the same time, a project manager expects that in four month they will need to support the "Y" model of a bill dispenser.
+- Deciding to implement such presumptive features is a classic violation of YAGNI principle!
+  - Useless Feature => all the efforts spent on analyzing, programming, and testing.
+  - Useful Feature => stolen time + the cost of carry + **risk of wrong implementation (Rewrite or Fix)**.
+
+#### Questions
+
+- Ask yourself if the function (or a feature) is needed to be implemented right now:
+  - If the answer is "yes", then implement it.
+  - If the answer is "no", ask yourself another question: how many efforts will it take to implement that function or a feature in the future in the case it will be required.
+  - If the answer is "it'll definitely be very simple" then keep all the things as they are, don't introduce anything additional.
+  - If the answer is "it'll take enormous amount of time to rewrite many things to tweak the design to make it enough supple to introduce that feature", then consider to perform some refactorings which allow you to avoid massive rewritings in the future.
+
+#### Challenges
+
+- You should always carefully plan the upcoming features.
+- No big upfront design.
+- The goal applying YAGNI is to save some time.
+- Perform refactoring to enable YAGNI.
+- Be ready to fail applying YAGNI.
+
+## 4.4. SoC - Separation of Concerns
+
+- SRP and SoC are strongly related.
+- Implies separation of different concerns into different modules.
+- Allows to build modular systems.
+- Concerns we often face with:
+  - UI.
+  - Business Logic.
+  - Presentation Logic.
+  - Database.
+- Leaking abstractions can ruin the SoC.
+- Presentation layer is bothered by UI concerns:
+  ```
+    public Color TextColor {
+      get {
+        bool result = Validate(text);
+        return result ? Colors.Green : Colors.Red;
+      }
+    }
+  ```
+- Domain is bothered by Database:
+
+  ```
+  void DoWork(Customer customer1, Customer customer2) {
+    if (customer1.Id > 0) {
+      // Do something
+    }
+
+    if (customer1.Id == customer2.Id) {
+      // Do something
+    }
+  }
+  ```
+
+- Layers which represent different concerns should be isolated from each other in such a way that none of them should know about any intrinsic details of each other.
+- SQL procedures implementing business logic violate SoC but they're way much faster in certain scenarios.
+
+## 4.5. CQS - Command-Query Separation
+
+- Every method should either be a command that performs an action, or a query that returns data to the caller, but not both.
+- In other words, Asking a question should not change the answer.
+- Two major types of functions:
+  - Functions which perform commands
+  - Functions which perform a query and return a result
+- Bad
+  ```
+    public bool LogOn(string username, string password) { }
+    if (LogOn("spock", "qwerty")) { }
+  ```
+- Good
+  ```
+    public void LogOn(string username, string password) { }
+    public bool IsLogedOn(string username, string password) { }
+  ```
+
+## 4.6. LoD - Law of Demeter
+
+- Law of Demeter (LoD) or principle of least knowledge is a design guideline for developing software, particularly object-oriented programs.
+- Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.
+  - or: Each unit should only talk to its friends; Don't talk to strangers.
+- A method of an object may only call methods of:
+  - The object itself.
+  - An argument of the method.
+  - Any object created within the method.
+  - Any direct properties/fields of the object.
+
+### 4.6.1. Scenario Customer vs Paperboy
+
+- Let's pretend that we should model the business relationships between a paperboy and a customer who wants to buy magazines.
+- A paperboy rings the doorbell, a customer opens it, a paperboy somehow has to be paid and then hand over a magazine to the customer.
+
+- Bad [LawOfDemeterWithViolation](LawOfDemeter/WithViolation/)
+- Good [LawOfDemeterWithoutViolation](LawOfDemeter/WithoutViolation/)
+
+- The Law of Demeter is not about the number of dots.
+- This law is about reducing the coupling and improving the encapsulation.
+
+## 4.7. Principle of Least Astonishment
+
+- A component of a system should behave in a manner consistent with how users of that component are likely expect it to behave.
+- Following principles and techniques are based on the principle of least astonishment:
+  - Fault-Safe API.
+  - Command-Query Separation.
+  - Immutability.
+  - Design by Contract.
+  - Null Prevention.
+- Works fine:
+  ```
+    reporting.PrintReportA();
+    reporting.PrintReportB();
+  ```
+- Fails in Runtime.
+
+  ```
+    reporting.PrintReportB();
+    reporting.PrintReportA();
+  ```
+- Violation
+
+  ```
+    var array = new string[10];
+    var list = array as IList<string>; //this works...
+    list.Add("foo"); //exception saying it's not supported
+  ```
