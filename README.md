@@ -81,13 +81,24 @@
   - [4.3. Yagni - You Ain't Gonna Need It](#43-yagni---you-aint-gonna-need-it)
     - [4.3.1. Worse is better](#431-worse-is-better)
     - [4.3.2. YAGNI Violation](#432-yagni-violation)
-      - [Questions](#questions)
-      - [Challenges](#challenges)
+      - [4.3.2.1. Questions](#4321-questions)
+      - [4.3.2.2. Challenges](#4322-challenges)
   - [4.4. SoC - Separation of Concerns](#44-soc---separation-of-concerns)
   - [4.5. CQS - Command-Query Separation](#45-cqs---command-query-separation)
   - [4.6. LoD - Law of Demeter](#46-lod---law-of-demeter)
     - [4.6.1. Scenario Customer vs Paperboy](#461-scenario-customer-vs-paperboy)
-  - [4.7. Principle of Least Astonishment](#47-principle-of-least-astonishment)
+  - [4.7. PoLA - Principle of Least Astonishment](#47-pola---principle-of-least-astonishment)
+  - [4.8. Information Hiding and Encapsulation](#48-information-hiding-and-encapsulation)
+  - [4.9. General Principles of Building APIs](#49-general-principles-of-building-apis)
+    - [4.9.1. API Intro](#491-api-intro)
+    - [4.9.2. API Characteristics](#492-api-characteristics)
+      - [4.9.2.1. Simplicity](#4921-simplicity)
+      - [4.9.2.2. Expressiveness and Compromises](#4922-expressiveness-and-compromises)
+      - [4.9.2.3. Extensibility](#4923-extensibility)
+      - [4.9.2.4. Consistency](#4924-consistency)
+      - [4.9.2.5. Public API vs Private API](#4925-public-api-vs-private-api)
+      - [4.9.2.6. API Development Principles](#4926-api-development-principles)
+  - [4.10. Resume](#410-resume)
 
 # 1. Intro
 
@@ -850,7 +861,7 @@
   - Useless Feature => all the efforts spent on analyzing, programming, and testing.
   - Useful Feature => stolen time + the cost of carry + **risk of wrong implementation (Rewrite or Fix)**.
 
-#### Questions
+#### 4.3.2.1. Questions
 
 - Ask yourself if the function (or a feature) is needed to be implemented right now:
   - If the answer is "yes", then implement it.
@@ -858,7 +869,7 @@
   - If the answer is "it'll definitely be very simple" then keep all the things as they are, don't introduce anything additional.
   - If the answer is "it'll take enormous amount of time to rewrite many things to tweak the design to make it enough supple to introduce that feature", then consider to perform some refactorings which allow you to avoid massive rewritings in the future.
 
-#### Challenges
+#### 4.3.2.2. Challenges
 
 - You should always carefully plan the upcoming features.
 - No big upfront design.
@@ -891,11 +902,11 @@
   ```
   void DoWork(Customer customer1, Customer customer2) {
     if (customer1.Id > 0) {
-      // Do something
+      // Do something.
     }
 
     if (customer1.Id == customer2.Id) {
-      // Do something
+      // Do something.
     }
   }
   ```
@@ -913,7 +924,7 @@
 - Bad
   ```
     public bool LogOn(string username, string password) { }
-    if (LogOn("spock", "qwerty")) { }
+    if (LogOn("jefté", "qwerty")) { }
   ```
 - Good
   ```
@@ -936,14 +947,12 @@
 
 - Let's pretend that we should model the business relationships between a paperboy and a customer who wants to buy magazines.
 - A paperboy rings the doorbell, a customer opens it, a paperboy somehow has to be paid and then hand over a magazine to the customer.
-
-- Bad [LawOfDemeterWithViolation](LawOfDemeter/WithViolation/)
-- Good [LawOfDemeterWithoutViolation](LawOfDemeter/WithoutViolation/)
-
+  - Bad [LawOfDemeterWithViolation](LawOfDemeter/WithViolation/)
+  - Good [LawOfDemeterWithoutViolation](LawOfDemeter/WithoutViolation/)
 - The Law of Demeter is not about the number of dots.
 - This law is about reducing the coupling and improving the encapsulation.
 
-## 4.7. Principle of Least Astonishment
+## 4.7. PoLA - Principle of Least Astonishment
 
 - A component of a system should behave in a manner consistent with how users of that component are likely expect it to behave.
 - Following principles and techniques are based on the principle of least astonishment:
@@ -963,10 +972,163 @@
     reporting.PrintReportB();
     reporting.PrintReportA();
   ```
+
 - Violation
 
   ```
     var array = new string[10];
-    var list = array as IList<string>; //this works...
-    list.Add("foo"); //exception saying it's not supported
+    var list = array as IList<string>; // This works...
+    list.Add("foo"); // Exception saying it's not supported.
   ```
+
+## 4.8. Information Hiding and Encapsulation
+
+- Information hiding is the principle of segregation, of the design decisions in a computer program that are most likely to change, thus protecting other parts of the program from extensive modification if the design decision is changed.
+- Information hiding is the ability to prevent certain aspects of a class or software component from being accessible to its clients, using either programming language features (like private variables) or an explicit exporting policy.
+- So, what's the difference between Information Hiding and Encapsulation?
+  - Encapsulation allows to reuse components without learning their internal details.
+- Poorly Encapsulated Class:
+
+  ```
+    class Customer {
+      public event EventHandler<Customer> CustomerReceived;
+
+      public string PaySalary(string amount) {
+        // Impl.
+      }
+
+      public void GetCustomer(int id) {
+        // Impl.
+      }
+
+      public int RemoveCustomer(int id) {
+        // Impl.
+      }
+    }
+  ```
+
+- Well Encapsulated Class
+
+  ```
+    class Customer
+    {
+      public void PaySalary(decimal amount)
+      {
+        // Impl.
+      }
+
+      public Customer GetCustomer(int id)
+      {
+        // Impl.
+      }
+
+      public void RemoveCustomer(int id)
+      {
+        // Impl.
+      }
+    }
+  ```
+
+- Or
+
+  ```
+    class Customer
+    {
+      public Result PaySalary(decimal amount)
+      {
+        return Result.Success();
+      }
+
+      public Maybe<Customer> GetCustomer(int id)
+      {
+        // Get instance from a DB.
+        var customer = new Customer();
+        return Maybe<Customer>.From(customer);
+      }
+
+      public Result RemoveCustomer(int id)
+      {
+        return Result.Success();
+      }
+    }
+  ```
+
+## 4.9. General Principles of Building APIs
+
+### 4.9.1. API Intro
+
+- API (Application Programming Interface) – set of functionality.
+- The perfect API is an **oxymoron**.
+- Types of APIs:
+  - Private ("zoo”).
+  - Public ("wilderness”).
+
+### 4.9.2. API Characteristics
+
+#### 4.9.2.1. Simplicity
+
+- Rule of Thumb: "You can always add, but never remove.”
+- Compromise between power and simplicity: When power of an API grows, its simplicity degrades.
+- The only way to understand whether an API is simple or not is to estimate the time spent on understanding it by its users.
+
+#### 4.9.2.2. Expressiveness and Compromises
+
+- Resources which can be allocated on API development are always limited
+- API it is almost impossible to create universal APIs
+- API developers have to implement first things first
+- The only way to understand whether an API is simple or not is to estimate the time spent on understanding it by its users.
+
+#### 4.9.2.3. Extensibility
+
+- Reflects the capabilities to increase the power of an API without big rewritings
+- You should be able to add new functionality and preserve the backward compatibility
+- Open-Closed Principle (OCP) (mainly applicable in "zoo” APIs
+- In public APIs we should at first preserve the backwards compatibility (if any doubts regarding a new API member - don't introduce it)
+
+#### 4.9.2.4. Consistency
+
+- API has to be logical and consistent: design decisions – strongly opinionated!
+
+#### 4.9.2.5. Public API vs Private API
+
+- The cost of bad decisions in public API may be extremely high.
+- Private APIs should be developed bearing in mind all API characteristics.
+- Zookeepers must strive to become rangers.
+
+#### 4.9.2.6. API Development Principles
+
+- APIs should be **as simple as possible**, but no simpler.
+- A good API should allow to **do a lot without learning a lot**.
+- APIs should be based on **use cases**.
+- It means two things:
+  - Imagine that you're a client of that API.
+  - Sketch API as soon as possible.
+- Provide a low barrier for using an API.
+- In practice it means that you always:
+  - Should provide the simplest constructors with default values of other required parameters.
+  - Should throw exceptions with messages which explain what to do to fix the problem.
+  - Shouldn't require from clients to explicitly create more than one type for accomplishing main use cases.
+  - Shouldn't require from clients to perform a wide initialization of an object.
+  - Build self-explanatory APIs.
+  - Provide a decent documentation.
+
+## 4.10. Resume
+
+- DRY states: "Every piece of knowledge must have a single, unambiguous representation in the system":
+  - Magic strings or values.
+  - Duplicated logic in multiple locations.
+  - Repeated if-then logic or multiple switch-case statements.
+- KISS - simplicity should be a key goal in design, decomposition is a key.
+- YAGNI – don't add functionality until deemed necessary.
+- SoC – separate different concerns from each other.
+- CQS – every method should be either a command or a query.
+- LoD – Each unit should have only limited knowledge about other units. Only units closely related to the current unit.
+- PoLA – component should behave as it is expected by clients.
+- Encapsulation is intended to protect invariants.
+- Information Hiding is one of the ways to achieve proper encapsulation.
+- Achieve balance between complexity and simplicity applying the Reused Abstraction Principle.
+- OCP beats YAGNI in case of public API.
+- YAGNI beats OCP in case of private API.
+- SRP and ISP don't contradict with each other.
+- Architecture is the agreement between group of people regarding the importance of system components.
+- Software design concerns implementation – classes, interfaces.
