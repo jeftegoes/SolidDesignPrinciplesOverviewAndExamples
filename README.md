@@ -1060,30 +1060,30 @@
 - API (Application Programming Interface) – set of functionality.
 - The perfect API is an **oxymoron**.
 - Types of APIs:
-  - Private ("zoo”).
-  - Public ("wilderness”).
+  - Private ("zoo").
+  - Public ("wilderness").
 
 ### 4.9.2. API Characteristics
 
 #### 4.9.2.1. Simplicity
 
-- Rule of Thumb: "You can always add, but never remove.”
+- Rule of Thumb: "You can always add, but never remove."
 - Compromise between power and simplicity: When power of an API grows, its simplicity degrades.
 - The only way to understand whether an API is simple or not is to estimate the time spent on understanding it by its users.
 
 #### 4.9.2.2. Expressiveness and Compromises
 
-- Resources which can be allocated on API development are always limited
-- API it is almost impossible to create universal APIs
-- API developers have to implement first things first
+- Resources which can be allocated on API development are always limited.
+- API it is almost impossible to create universal APIs.
+- API developers have to implement first things first.
 - The only way to understand whether an API is simple or not is to estimate the time spent on understanding it by its users.
 
 #### 4.9.2.3. Extensibility
 
-- Reflects the capabilities to increase the power of an API without big rewritings
-- You should be able to add new functionality and preserve the backward compatibility
-- Open-Closed Principle (OCP) (mainly applicable in "zoo” APIs
-- In public APIs we should at first preserve the backwards compatibility (if any doubts regarding a new API member - don't introduce it)
+- Reflects the capabilities to increase the power of an API without big rewritings.
+- You should be able to add new functionality and preserve the backward compatibility.
+- Open-Closed Principle (OCP) (mainly applicable in "zoo" APIs.
+- In public APIs we should at first preserve the backwards compatibility (if any doubts regarding a new API member - don't introduce it).
 
 #### 4.9.2.4. Consistency
 
