@@ -169,9 +169,6 @@
 ## 3.1. SRP - Single Responsibility Principle
 
 - Every object should have a single responsibility, and that responsibility should be entirely encapsulated by the class.
-- This will be you can't think about that, a **class** can only be changed for the sake of the purpose, it is the responsibility that is imposed on that class.
-- So that class has only one job to do.
-- We can talk about all the class and this class, only responsible one job and do not do anything else inside of that class or into the methods.
 - _There should never be more than one reason for a class to change._ Robert C. Martin aka Uncle Bob
 
 ### 3.1.1. Calculating responsibilities
@@ -325,9 +322,6 @@
 
 - If **S** is a subtype of **T**, then objects of type **T** may be replaced with objects of type **S**, without breaking the program.
 - The Liskov Substitution Principle states that Subtypes must be substitutable for their base types.
-- And the third one is the Liskov substitution principle, we should able to use subclasses instead of the upper classes from which they derive without needing to make any changes in our code.
-- So that means we can use **interfaces** which are changing to any implementation code.
-- These interfaces can be manage with the substitution each other.
 
 ### 3.3.1. Ways of breaking substitutability
 
@@ -478,6 +472,7 @@
   - Dependency has a nondeterministic behavior (randomizers inside).
 - **If none of these true, a dependency is stable**.
 - Volatile dependencies are those which we want to abstract away by introducing levels of indirection.
+- Unstable (Volatile), have to be isolated.
 
 ### 3.5.5. Definitions of IoC and DI
 
@@ -786,6 +781,123 @@
   		d.SendCommand(Terminate);
   	}
   }
+  ```
+
+- Other case of violation
+
+  ```
+    public class Dispenser
+    {
+      public string ModelName { get; set; }
+      public string Port { get; set; }
+
+      public void Dispense()
+      {
+      }
+    }
+
+    public class Accepter
+    {
+      public string ModelName { get; set; }
+      public string Port { get; set; }
+
+      public void Accept()
+      {           
+      }
+    }
+  ```
+
+- Alternative to code above, with points of attention...
+
+  ```
+    public class Device
+    {
+      public string ModelName { get; set; }
+      public string Port { get; set; }
+    }
+
+    public class Dispenser : Device
+    {
+      public void Dispense()
+      {
+
+      }
+    }
+
+    public class Accepter : Device
+    {
+      public void Accept()
+      {            
+      }
+    }
+  ```
+- Repeated if-then or switch-case
+
+  ```
+    public enum Shape
+    {
+      Circle,
+      Rectangle,
+      Square,
+      Hexagon
+    }
+
+    public class Visualizer
+    {
+      public void Draw(Shape shape)
+      {
+        switch (shape)
+        {
+          case Shape.Circle:
+          break;
+          case Shape.Hexagon:
+          break;
+          case Shape.Rectangle:
+          break;
+          case Shape.Square:
+          break;
+        }
+      }
+
+      public decimal CalculateArea(Shape shape) 
+      {
+        // Switch case.
+      }
+    }
+  ```
+- Removing repeated if-then or switch-case
+  ```
+    abstract class Shape
+    {
+      abstract void Draw();
+      abstract decimal CalcArea();
+    }
+
+    public class Rectangle : Shape
+    {
+      public override void Draw()
+      {            
+
+      }
+
+      public override decimal CalcArea()
+      {            
+
+      }
+    }
+
+    public class Circle : Shape
+    {
+      public override void Draw()
+      {            
+
+      }
+
+      public override decimal CalcArea()
+      {         
+
+      }
+    }
   ```
 
 ## 4.2. KISS - Keep it Simple, Stupid
