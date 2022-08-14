@@ -70,6 +70,7 @@
       - [3.5.8.5. Pure DI and IoC-Containers](#3585-pure-di-and-ioc-containers)
         - [3.5.8.5.1. IoC-Containers](#35851-ioc-containers)
       - [3.5.8.6. Common Smells](#3586-common-smells)
+    - [3.5.9. Others related patterns](#359-others-related-patterns)
 - [4. Meta principles](#4-meta-principles)
   - [4.1. DRY - Don't Repeat Yourself](#41-dry---dont-repeat-yourself)
     - [4.1.1. Common violations of DRY](#411-common-violations-of-dry)
@@ -672,6 +673,10 @@
   - Extract a layer of indirection and make high-level policies independent of low-level details.
   - Adhere to the SRP.
 
+### 3.5.9. Others related patterns
+
+- Factory pattern.
+
 # 4. Meta principles
 
 ## 4.1. DRY - Don't Repeat Yourself
@@ -802,7 +807,7 @@
       public string Port { get; set; }
 
       public void Accept()
-      {           
+      {
       }
     }
   ```
@@ -827,10 +832,11 @@
     public class Accepter : Device
     {
       public void Accept()
-      {            
+      {
       }
     }
   ```
+
 - Repeated if-then or switch-case
 
   ```
@@ -859,13 +865,15 @@
         }
       }
 
-      public decimal CalculateArea(Shape shape) 
+      public decimal CalculateArea(Shape shape)
       {
         // Switch case.
       }
     }
   ```
+
 - Removing repeated if-then or switch-case
+
   ```
     abstract class Shape
     {
@@ -876,12 +884,12 @@
     public class Rectangle : Shape
     {
       public override void Draw()
-      {            
+      {
 
       }
 
       public override decimal CalcArea()
-      {            
+      {
 
       }
     }
@@ -889,12 +897,12 @@
     public class Circle : Shape
     {
       public override void Draw()
-      {            
+      {
 
       }
 
       public override decimal CalcArea()
-      {         
+      {
 
       }
     }
