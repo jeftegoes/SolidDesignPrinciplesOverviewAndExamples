@@ -28,14 +28,14 @@
     - [3.2.8. Common Smells](#328-common-smells)
     - [3.2.9. Adhering to OCP](#329-adhering-to-ocp)
     - [3.2.10. Resume](#3210-resume)
-  - [3.3. L - Liskov substitution principle](#33-l---liskov-substitution-principle)
+  - [3.3. L - Liskov Substitution Principle](#33-l---liskov-substitution-principle)
     - [3.3.1. Ways of breaking substitutability](#331-ways-of-breaking-substitutability)
     - [3.3.2. Contracts](#332-contracts)
       - [3.3.2.1. What is contract?](#3321-what-is-contract)
       - [3.3.2.2. What constitutes a method's contract?](#3322-what-constitutes-a-methods-contract)
     - [3.3.3. Code contracts in C#](#333-code-contracts-in-c)
     - [3.3.4. The problem of representatives](#334-the-problem-of-representatives)
-    - [3.3.5. Common Smells](#335-common-smells)
+    - [3.3.5. Common smells](#335-common-smells)
     - [3.3.6. Tips](#336-tips)
   - [3.4. I - Interface Segregation Principle](#34-i---interface-segregation-principle)
     - [3.4.1. What is Interface?](#341-what-is-interface)
@@ -45,18 +45,18 @@
     - [3.4.5. Related patterns](#345-related-patterns)
     - [3.4.6. Adapter pattern](#346-adapter-pattern)
     - [3.4.7. Tips](#347-tips)
-  - [3.5. D - Dependency inversion principle](#35-d---dependency-inversion-principle)
-    - [3.5.1. Types of Dependencies](#351-types-of-dependencies)
+  - [3.5. D - Dependency Inversion Principle](#35-d---dependency-inversion-principle)
+    - [3.5.1. Types of dependencies](#351-types-of-dependencies)
     - [3.5.2. Policy depends on Details](#352-policy-depends-on-details)
     - [3.5.3. Policy doesn't depend on Details](#353-policy-doesnt-depend-on-details)
-    - [3.5.4. Volatile and Stable Dependencies](#354-volatile-and-stable-dependencies)
-      - [3.5.4.1. Volatile Dependencies](#3541-volatile-dependencies)
+    - [3.5.4. Volatile and stable dependencies](#354-volatile-and-stable-dependencies)
+      - [3.5.4.1. Volatile dependencies](#3541-volatile-dependencies)
     - [3.5.5. Definitions of IoC and DI](#355-definitions-of-ioc-and-di)
       - [3.5.5.1. Inversion of Control (IoC)](#3551-inversion-of-control-ioc)
       - [3.5.5.2. DIP](#3552-dip)
     - [3.5.6. IoC and DI](#356-ioc-and-di)
     - [3.5.7. DI Techniques](#357-di-techniques)
-      - [3.5.7.1. Constructor Injection](#3571-constructor-injection)
+      - [3.5.7.1. Constructor injection](#3571-constructor-injection)
         - [3.5.7.1.1. Possible pitfall](#35711-possible-pitfall)
       - [3.5.7.2. Property Injection](#3572-property-injection)
         - [3.5.7.2.1. Possible pitfall](#35721-possible-pitfall)
@@ -319,7 +319,7 @@
 - Abstract class is suppler from the developer's perspective.
 - To overcome the problem of predicting the future, we rely on "agile design".
 
-## 3.3. L - Liskov substitution principle
+## 3.3. L - Liskov Substitution Principle
 
 - If **S** is a subtype of **T**, then objects of type **T** may be replaced with objects of type **S**, without breaking the program.
 - The Liskov Substitution Principle states that Subtypes must be substitutable for their base types.
@@ -364,7 +364,7 @@
 - Refused Bequest.
 - Programming code just represents the concepts of square and rectangle.
 
-### 3.3.5. Common Smells
+### 3.3.5. Common smells
 
 - Method throws NotSupportedException.
 - Empty or degenerative implementation.
@@ -426,7 +426,7 @@
 - Don't abuse ISP by creating tons of small interfaces.
 - Keep an interface within the client's assembly if possible.
 
-## 3.5. D - Dependency inversion principle
+## 3.5. D - Dependency Inversion Principle
 
 - DIP is about decoupling!
 - Coupling indicates how dependent modules are on the inner workings of each other.
@@ -437,7 +437,7 @@
   - High-level modules should not depend on low-level modules. Both should depend on abstractions.
   - Abstractions should not depend on details. Details should depend on abstactions.
 
-### 3.5.1. Types of Dependencies
+### 3.5.1. Types of dependencies
 
 - Framework.
 - 3rd party libs.
@@ -458,13 +458,13 @@
 
 ![ClassDontDependOnDetails](/Images/ClassDontDependOnDetails.png)
 
-### 3.5.4. Volatile and Stable Dependencies
+### 3.5.4. Volatile and stable dependencies
 
 - Dependencies can be divided into two camps:
   - Volatile.
   - Stable.
 
-#### 3.5.4.1. Volatile Dependencies
+#### 3.5.4.1. Volatile dependencies
 
 - A dependency is volatile if any of the following criteria is true:
   - Dependency itself depends on the environment (web servers, db).
@@ -497,7 +497,7 @@
 
 ### 3.5.7. DI Techniques
 
-#### 3.5.7.1. Constructor Injection
+#### 3.5.7.1. Constructor injection
 
 - Protects the invariants.
 
