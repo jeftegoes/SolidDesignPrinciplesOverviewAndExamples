@@ -79,7 +79,7 @@
     - [4.2.2. Accidental & Essential Complexity](#422-accidental--essential-complexity)
     - [4.2.3. Achieving Simplicity](#423-achieving-simplicity)
     - [4.2.4. Simplicity](#424-simplicity)
-  - [4.3. Yagni - You Ain't Gonna Need It](#43-yagni---you-aint-gonna-need-it)
+  - [4.3. YAGNI - You Ain't Gonna Need It](#43-yagni---you-aint-gonna-need-it)
     - [4.3.1. Worse is better](#431-worse-is-better)
     - [4.3.2. YAGNI Violation](#432-yagni-violation)
       - [4.3.2.1. Questions](#4321-questions)
@@ -955,7 +955,7 @@
   - Correctness.
   - Good design.
 
-## 4.3. Yagni - You Ain't Gonna Need It
+## 4.3. YAGNI - You Ain't Gonna Need It
 
 - YAGNI is all about avoiding overengineering.
 - There is no a well-defined criterion to measure the "YAGNI-ness".
