@@ -76,7 +76,7 @@
     - [4.1.1. Common violations of DRY](#411-common-violations-of-dry)
   - [4.2. KISS - Keep it Simple, Stupid](#42-kiss---keep-it-simple-stupid)
     - [4.2.1. What is Simplicity?](#421-what-is-simplicity)
-    - [4.2.2. Accidental & Essential Complexity](#422-accidental--essential-complexity)
+    - [4.2.2. Accidental \& Essential Complexity](#422-accidental--essential-complexity)
     - [4.2.3. Achieving Simplicity](#423-achieving-simplicity)
     - [4.2.4. Simplicity](#424-simplicity)
   - [4.3. YAGNI - You Ain't Gonna Need It](#43-yagni---you-aint-gonna-need-it)
@@ -269,10 +269,11 @@
   - It defines the skeleton of an algorithm in an operation, deferring some steps to subclasses.
   - Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 - Strategy
-  - Strategy enables an algorithm's behavior to be selected at runtime. The strategy pattern:
-    - Defines a family of algorithms.
-    - Encapsulates each algorithm.
-    - Makes the algorithms interchangeable within that family.
+  - Strategy enables an algorithm's behavior to be selected at runtime.
+    - The strategy pattern:
+      - Defines a family of algorithms.
+      - Encapsulates each algorithm.
+      - Makes the algorithms interchangeable within that family.
 - **Specification pattern**
 
 ### 3.2.5. Interfaces
@@ -434,8 +435,10 @@
 - Low coupling:
   - Is often a sign of a well-structured computer system and a good design, and when combined with high cohesion, supports the general goals of high readability and maintainability.
 - Definition:
-  - High-level modules should not depend on low-level modules. Both should depend on abstractions.
-  - Abstractions should not depend on details. Details should depend on abstactions.
+  - **High-level** modules should not depend on **low-level** modules.
+    - Both should depend on **abstractions**.
+  - Abstractions should not depend on details.
+    - Details should depend on abstactions.
 
 ### 3.5.1. Types of dependencies
 
@@ -1036,11 +1039,13 @@
 
 ## 4.5. CQS - Command-Query Separation
 
-- Every method should either be a command that performs an action, or a query that returns data to the caller, but not both.
-- In other words, Asking a question should not change the answer.
+- Every method should either be a **command** that performs an action, or a **query** that returns data to the caller, but not both.
+- In other words, asking a question should not change the answer.
 - Two major types of functions:
-  - Functions which perform commands
-  - Functions which perform a query and return a result
+  - Functions which perform **commands**.
+    - Asking for an action or change (e.g., please set your attack value to 2).
+  - Functions which perform a **query** and **return a result**.
+    - Asking for information (e.g., please give me your attack value).
 - Bad
   ```
     public bool LogOn(string username, string password) { }
