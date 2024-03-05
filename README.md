@@ -16,7 +16,7 @@
     - [3.1.2. Common SRP Violation](#312-common-srp-violation)
     - [3.1.3. Design pattern Façade](#313-design-pattern-façade)
     - [3.1.4. Others related patterns](#314-others-related-patterns)
-    - [3.1.5. Resume](#315-resume)
+    - [3.1.5. Summary](#315-summary)
   - [3.2. O - Open/closed principle](#32-o---openclosed-principle)
     - [3.2.1. Why OCP?](#321-why-ocp)
     - [3.2.2. Single choice principle:](#322-single-choice-principle)
@@ -27,7 +27,7 @@
     - [3.2.7. Interfaces VS Abstract Classes](#327-interfaces-vs-abstract-classes)
     - [3.2.8. Common Smells](#328-common-smells)
     - [3.2.9. Adhering to OCP](#329-adhering-to-ocp)
-    - [3.2.10. Resume](#3210-resume)
+    - [3.2.10. Summary](#3210-summary)
   - [3.3. L - Liskov Substitution Principle](#33-l---liskov-substitution-principle)
     - [3.3.1. Ways of breaking substitutability](#331-ways-of-breaking-substitutability)
     - [3.3.2. Contracts](#332-contracts)
@@ -37,6 +37,7 @@
     - [3.3.4. The problem of representatives](#334-the-problem-of-representatives)
     - [3.3.5. Common smells](#335-common-smells)
     - [3.3.6. Tips](#336-tips)
+    - [3.3.7. Summary](#337-summary)
   - [3.4. I - Interface Segregation Principle](#34-i---interface-segregation-principle)
     - [3.4.1. What is Interface?](#341-what-is-interface)
     - [3.4.2. Historical background](#342-historical-background)
@@ -45,6 +46,7 @@
     - [3.4.5. Related patterns](#345-related-patterns)
     - [3.4.6. Adapter pattern](#346-adapter-pattern)
     - [3.4.7. Tips](#347-tips)
+    - [3.4.8. Summary](#348-summary)
   - [3.5. D - Dependency Inversion Principle](#35-d---dependency-inversion-principle)
     - [3.5.1. Types of dependencies](#351-types-of-dependencies)
     - [3.5.2. Policy depends on Details](#352-policy-depends-on-details)
@@ -71,6 +73,7 @@
         - [3.5.8.5.1. IoC-Containers](#35851-ioc-containers)
       - [3.5.8.6. Common Smells](#3586-common-smells)
     - [3.5.9. Others related patterns](#359-others-related-patterns)
+    - [3.5.10. Summary](#3510-summary)
 - [4. Meta principles](#4-meta-principles)
   - [4.1. DRY - Don't Repeat Yourself](#41-dry---dont-repeat-yourself)
     - [4.1.1. Common violations of DRY](#411-common-violations-of-dry)
@@ -99,7 +102,7 @@
       - [4.9.2.4. Consistency](#4924-consistency)
       - [4.9.2.5. Public API vs Private API](#4925-public-api-vs-private-api)
       - [4.9.2.6. API Development Principles](#4926-api-development-principles)
-  - [4.10. Resume](#410-resume)
+  - [4.10. Summary](#410-summary)
 
 # 1. Intro
 
@@ -206,7 +209,7 @@
 - Composite
   - Composite pattern allows to compose objects into tree structures to represent part-whole hierarchies, letting clients treat individual objects and compositions of objects uniformly.
 
-### 3.1.5. Resume
+### 3.1.5. Summary
 
 - Applying SRP we want to separate different concerns.
 - A class should do one thing, and do it well!
@@ -311,7 +314,7 @@
 - Classic Inheritance or "Visitor" design pattern.
 - Composition VS Inheritance. "Strategy" design pattern.
 
-### 3.2.10. Resume
+### 3.2.10. Summary
 
 - Design should be open for extensions and closed for modification.
 - Isolate a responsibility for creating objects in a single module (Single Choice Principle).
@@ -380,6 +383,10 @@
   - Inherit those two classes from a base class.
   - Ensure that they are substitutable with the new base class
 
+### 3.3.7. Summary
+
+- You should be able to substitute a base type for a subtype.
+
 ## 3.4. I - Interface Segregation Principle
 
 - ISP states that Clients should not be forced to depend on methods they do not use.
@@ -426,6 +433,11 @@
   - Client uses narrow interface.
 - Don't abuse ISP by creating tons of small interfaces.
 - Keep an interface within the client's assembly if possible.
+
+### 3.4.8. Summary
+
+- Don't put too much into an interface; split into separete interfaces.
+- YAGNI - You Ain't Gonna Need It.
 
 ## 3.5. D - Dependency Inversion Principle
 
@@ -679,6 +691,10 @@
 ### 3.5.9. Others related patterns
 
 - Factory pattern.
+
+### 3.5.10. Summary
+
+- High-level modules should not depend upon low-level ones, use abstractions.
 
 # 4. Meta principles
 
@@ -1237,7 +1253,7 @@
   - Build self-explanatory APIs.
   - Provide a decent documentation.
 
-## 4.10. Resume
+## 4.10. Summary
 
 - DRY states: "Every piece of knowledge must have a single, unambiguous representation in the system":
   - Magic strings or values.
