@@ -464,14 +464,12 @@
 - High-level objects of the domain layer directly depend on low-level objects of the infrastructural layer.
 - It's hard to replace coupled dependencies.
 - We can solve any problem by introducing an extra level of indirection.
-
-![ClassDependOnDetails](/Images/ClassDependOnDetails.png)
+  ![ClassDependOnDetails](/Images/ClassDependOnDetails.png)
 
 ### 3.5.3. Policy doesn't depend on Details
 
 - IPersonRepository is a seam which inverts the dependencies.
-
-![ClassDontDependOnDetails](/Images/ClassDontDependOnDetails.png)
+  ![ClassDontDependOnDetails](/Images/ClassDontDependOnDetails.png)
 
 ### 3.5.4. Volatile and stable dependencies
 
@@ -644,15 +642,13 @@
 - Data and Schema rule the world.
 - Logic in SQL Stored Procedures.
 - SQL is suited for tuples processing, not for modeling objects relationships.
-
-![DataCentricModel](Images/DataCentricModel.png)
+  ![DataCentricModel](Images/DataCentricModel.png)
 
 #### 3.5.8.3. Domain-Centric Model
 
 - Domain is the Core.
 - Domain is Stable.
-
-![DomainCentricModel](Images/DomainCentricModel.png)
+  ![DomainCentricModel](Images/DomainCentricModel.png)
 
 #### 3.5.8.4. Enlarged Domain-Centric Model
 
