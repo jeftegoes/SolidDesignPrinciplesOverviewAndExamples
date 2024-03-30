@@ -74,7 +74,7 @@
       - [3.5.8.6. Common Smells](#3586-common-smells)
     - [3.5.9. Others related patterns](#359-others-related-patterns)
     - [3.5.10. Summary](#3510-summary)
-- [4. Meta principles](#4-meta-principles)
+- [4. Design principles](#4-design-principles)
   - [4.1. DRY - Don't Repeat Yourself](#41-dry---dont-repeat-yourself)
     - [4.1.1. Common violations of DRY](#411-common-violations-of-dry)
   - [4.2. KISS - Keep it Simple, Stupid](#42-kiss---keep-it-simple-stupid)
@@ -110,24 +110,24 @@
 
 - Big design upfront is very expensive in software development.
 - No guarantee that we take into account all the possible requirements.
-- Requirements tend to change very quickly .
+- Requirements tend to change very quickly.
 - Keep the design as clean as you can.
 
 ## 1.2. Design smells
 
-- Rigidity:
-  - Software is rigid if the cost of making a single change is very high
+- **Rigidity**
+  - Software is rigid if the cost of making a single change is very high.
     - **Reason - tight coupling between modules.**
-- Fragility:
+- **Fragility**
   - Software is fragile if small changes in one module cause bugs appearance in other.
     - **Reason – tight coupling between components.**
-- Immobility:
+- **Immobility**
   - Software is immobile when it's components can't be reused in other systems.
     - **Reason - tight coupling between components.**
-- Viscosity:
+- **Viscosity**
   - The software is viscose when adding a single feature evokes dealing with tons of aspects.
     - **Reason - tight coupling between components.**
-- Needless Complexity:
+- **Needless Complexity**
   - Software is needlessly complex if developers are trying to forecast the future, introducing excessive points of extension.
   - Concentrate on the current requirements, constructing the supple architecture which can bend to meet new requirements.
 
@@ -692,7 +692,7 @@
 
 - High-level modules should not depend upon low-level ones, use abstractions.
 
-# 4. Meta principles
+# 4. Design principles
 
 ## 4.1. DRY - Don't Repeat Yourself
 
@@ -704,18 +704,17 @@
 - Magic strings or any other magic values.
 - Duplicate logic in multiple locations.
 - Repeated `if-then` logic or multiple switch-cases scattered throughout the code base.
-
 - Examples with magic values:
 
   - Bad:
 
-  ```
-  int reponseCode = GetDeviceResponse();
-  if (responseCode == 188)
-  {
+    ```
+      int reponseCode = GetDeviceResponse();
+      if (responseCode == 188)
+      {
 
-  }
-  ```
+      }
+    ```
 
   - Good:
 
@@ -733,74 +732,74 @@
   - Bad:
 
   ```
-  public class MagicValues
-  {
-  	public void AcceptCard()
-  	{
-  		var d = new Device();
-  		d.SendCommand(1);
-  		d.SendCommand(2);
-  		d.SendCommand(9);
-  	}
+    public class MagicValues
+    {
+      public void AcceptCard()
+      {
+        var d = new Device();
+        d.SendCommand(1);
+        d.SendCommand(2);
+        d.SendCommand(9);
+      }
 
-  	public void DispenseCard()
-  	{
-  		var d = new Device();
-  		d.SendCommand(1);
-  		d.SendCommand(3);
-  		d.SendCommand(9);
-  	}
-  }
+      public void DispenseCard()
+      {
+        var d = new Device();
+        d.SendCommand(1);
+        d.SendCommand(3);
+        d.SendCommand(9);
+      }
+    }
   ```
 
   - Good:
 
   ```
-  public class NoMagic
-  {
-  	private const int Initialize = 1;
-  	private const int Terminate = 9;
+    public class NoMagic
+    {
+      private const int Initialize = 1;
+      private const int Terminate = 9;
 
-  	public void AcceptCard()
-  	{
-  		var d = new Device();
-  		d.SendCommand(Initialize);
-  		d.SendCommand(2);
-  		d.SendCommand(Terminate);
-  	}
+      public void AcceptCard()
+      {
+        var d = new Device();
+        d.SendCommand(Initialize);
+        d.SendCommand(2);
+        d.SendCommand(Terminate);
+      }
 
-  	public void DispenseCard()
-  	{
-  		var d = new Device();
-  		d.SendCommand(Initialize);
-  		d.SendCommand(3);
-  		d.SendCommand(Terminate);
-  	}
-  }
+      public void DispenseCard()
+      {
+        var d = new Device();
+        d.SendCommand(Initialize);
+        d.SendCommand(3);
+        d.SendCommand(Terminate);
+      }
+    }
   ```
 
   - Good without duplicated code:
 
   ```
-  public class NoDuplicateLogic {
-  	private const int Initialize = 1;
-  	private const int Terminate = 9;
+    public class NoDuplicateLogic {
+      private const int Initialize = 1;
+      private const int Terminate = 9;
 
-  	public void AcceptCard() {
-  		ExecuteCommand(2);
-  	}
+      public void AcceptCard() {
+        ExecuteCommand(2);
+      }
 
-  	public void DispenseCard() {
-  		ExecuteCommand(3);
-  	}
+      public void DispenseCard() {
+        ExecuteCommand(3);
+      }
 
-  	private void ExecuteCommand(byte command) {
-  		var d = new Device();
-  		d.SendCommand(Initialize);
-  		d.SendCommand(command);
-  		d.SendCommand(Terminate);
-  	}
-  }
+      private void ExecuteCommand(byte command) {
+        var d = new Device();
+        d.SendCommand(Initialize);
+        d.SendCommand(command);
+        d.SendCommand(Terminate);
+      }
+    }
   ```
 
 - Other case of violation
@@ -927,9 +926,10 @@
 
 - "Make everything as simple as possible, but not simpler" – _Albert Einstein_
 - Simplicity is a key goal in design.
-  - YAGNI is about removing unnecessary code.
-  - KISS is about making the simplest implementation.
+  - **KISS** is about making the simplest implementation.
+  - **YAGNI** is about removing unnecessary code.
 - KISS definition, "A simple solution is better than a complex one, even if the solution look stupid".
+- Make your code or system simple. You should avoid unnecessary complexity. A simple code it’s easier to maintain and easier to understand.
 
 ### 4.2.1. What is Simplicity?
 
